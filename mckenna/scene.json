@@ -1,0 +1,44 @@
+{
+  "display": {
+    "title": "McKenna's Grotto",
+    "description": "Visit the bard McKenna in the Metaverse"
+  },
+  "owner": "",
+  "contact": {
+    "name": "dax",
+    "email": "dax.dcl@gmail.com"
+  },
+  "main": "bin/game.js",
+  "tags": [],
+  "spawnPoints": [
+    {
+      "name": "center",
+      "default": true,
+      "position": { "x": 2, "y": 0, "z": 14 },
+      "cameraTarget": { "x": 16, "y": 0, "z": 0 }
+    }
+  ],
+  "scene": {
+    "parcels": ["29,-88"],
+    "base": "29,-88"
+  },
+  "communications": {
+    "type": "webrtc",
+    "signalling": "https://signalling-01.decentraland.org"
+  },
+  "policy": {
+    "contentRating": "E",
+    "fly": true,
+    "voiceEnabled": true,
+    "blacklist": [],
+    "teleportPosition": ""
+  },
+  "source": {
+    "version": 1,
+    "origin": "builder",
+    "projectId": "411e8182-fd19-42ad-8421-f63fbe58766f",
+    "point": { "x": 0, "y": 0 },
+    "rotation": "east",
+    "layout": { "rows": 1, "cols": 1 }
+  }
+}
