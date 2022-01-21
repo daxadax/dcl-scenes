@@ -47,12 +47,7 @@ export let terminalInteraction: Dialog[] = [
     text: 'Welcome to the McKenna library. Please select an option to hear Terence speak about it.',
     isQuestion: true,
     buttons: [
-      {
-        label: 'Play selection',
-        goToDialog: 1,
-        triggeredActions: () => playSelectedClip()
-      },
-      { label: 'Next topic', goToDialog: selectedClip + 2 }
+      { label: 'Next', goToDialog: selectedClip + 2 }
     ]
   },
   {
@@ -64,9 +59,10 @@ export let terminalInteraction: Dialog[] = [
 
 soundClips.forEach(function(clip, index) {
   var dialogOption = {
-    text: clip.description,
+    text: clip.description + "\nduration: " + clip.duration,
     isQuestion: true,
     buttons: [
+      { label: 'Next', goToDialog: determineDialogOption(index) },
       {
         label: 'Select',
         goToDialog: 1,
@@ -74,8 +70,7 @@ soundClips.forEach(function(clip, index) {
           selectClip(index);
           playSelectedClip();
         }
-      },
-      { label: 'Next topic', goToDialog: determineDialogOption(index) }
+      }
     ]
   }
 
