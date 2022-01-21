@@ -1,7 +1,7 @@
 {
   "name": "411e8182-fd19-42ad-8421-f63fbe58766f",
   "version": "1.0.0",
-  "description": "My new Decentraland project",
+  "description": "McKenna's Grotto",
   "scripts": {
     "start": "dcl start",
     "build": "build-ecs",
@@ -11,10 +11,11 @@
     "ecs:install-next": "npm install --save-dev decentraland-ecs@next"
   },
   "devDependencies": {
-    "decentraland-ecs": "latest"
+    "decentraland-ecs": "^6.8.0"
   },
   "dependencies": {
-    "@dcl/npc-scene-utils": "latest",
+    "@dcl/npc-scene-utils": "^1.4.0",
+    "decentraland": "^3.8.3",
     "decentraland-builder-scripts": "latest"
   },
   "bundleDependencies": [
