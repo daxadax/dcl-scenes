@@ -39,9 +39,6 @@ let terrenceNpc = new NPC(terencePosition, 'models/mckenna.glb',
 // set default sound clip
 selectClip(0)
 
-// TODO: sound is coming from BEHIND mckenna, it should come from his mouth
-// going out..
-
 export let terminalInteraction: Dialog[] = [
   {
     text: 'Welcome to the McKenna library. Please select an option to hear Terence speak about it.',
@@ -81,12 +78,18 @@ function selectClip(clip) {
   selectedClip = clip
 }
 
+const speaker = new Entity('speaker')
+engine.addEntity(speaker)
+speaker.addComponent(
+  new Transform({ position: new Vector3(8, 1, 8) })
+)
+
 function playSelectedClip() {
   var audioClip = new AudioClip(soundClips[selectedClip].src)
   var audioSource = new AudioSource(audioClip)
 
   // add default audio source
-  terrenceNpc.addComponentOrReplace(audioSource)
+  speaker.addComponentOrReplace(audioSource)
 
   // play clip
   audioSource.playOnce()
