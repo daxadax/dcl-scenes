@@ -78,11 +78,22 @@ function selectClip(clip) {
   selectedClip = clip
 }
 
+// this is somewhat counter-intuitive, but the sound source should be out
+// infront of mckenna facing towards him so that the user is between mckenna and
+// the sound source. i'm not sure why it works like that but it seems to be the
+// best/clearest audio when done that way.
+// adding a model helps a lot when trying to figure out positioning
 const speaker = new Entity('speaker')
 engine.addEntity(speaker)
 speaker.addComponent(
-  new Transform({ position: new Vector3(8, 1, 8) })
+  new Transform({
+    position: new Vector3(5.5, 1, 8),
+    rotation: Quaternion.Euler(0, 210, 0)
+  })
 )
+// uncomment these two lines to add model
+// const speakerModel = new GLTFShape("models/Terminal_01/Terminal_01.glb")
+// speaker.addComponentOrReplace(speakerModel)
 
 function playSelectedClip() {
   var audioClip = new AudioClip(soundClips[selectedClip].src)
