@@ -1,0 +1,87 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="collect_plant_data" version="1.3.0" audacityversion="2.4.1" sel0="0.0481411324" sel1="0.0481411324" vpos="0" h="0.0000000000" zoom="103.8612876724" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags/>
+	<wavetrack name="scissors" isSelected="1" height="150" minimized="1" channel="2" linked="0" mute="0" solo="0" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="1.67235828" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="48960">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1f376.au" len="48960" min="-1.260884" max="1.223197" rms="0.038529"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="269474__christophchatten__pluck" isSelected="0" height="150" minimized="0" channel="2" linked="0" mute="1" solo="0" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="2.84383220" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="21031">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1fb32.au" len="21031" min="-0.13496" max="0.144288" rms="0.007513"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="1">
+				<controlpoint t="0.000000000000" val="1.000000000000"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="367350__tjoppie__plant-noises" isSelected="0" height="150" minimized="1" channel="0" linked="1" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="184862">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1f0f3.au" len="184862" min="-0.46286" max="0.452789" rms="0.006725"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="367350__tjoppie__plant-noises" isSelected="0" height="150" minimized="1" channel="1" linked="0" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="184862">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1f879.au" len="184862" min="-0.329987" max="0.415924" rms="0.00657"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="367350__tjoppie__plant-noises" isSelected="0" height="150" minimized="1" channel="0" linked="1" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.68360417" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="140958">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1fbbd.au" len="140958" min="-0.254028" max="0.277191" rms="0.007218"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="367350__tjoppie__plant-noises" isSelected="0" height="150" minimized="1" channel="1" linked="0" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.68360417" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="140958">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1f7ec.au" len="140958" min="-0.315582" max="0.264771" rms="0.007259"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="367350__tjoppie__plant-noises" isSelected="0" height="150" minimized="1" channel="0" linked="1" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.51993750" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="127093">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1f92e.au" len="127093" min="-0.107635" max="0.108612" rms="0.006537"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="367350__tjoppie__plant-noises" isSelected="0" height="150" minimized="1" channel="1" linked="0" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.51993750" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="127093">
+				<waveblock start="0">
+					<simpleblockfile filename="eff1fc4c.au" len="127093" min="-0.10733" max="0.105896" rms="0.006615"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>
