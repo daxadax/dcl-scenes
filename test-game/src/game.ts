@@ -4,17 +4,13 @@ import * as ui from '@dcl/ui-scene-utils'
 import { getUserData } from "@decentraland/Identity"
 
 // local resources
-import { Coin } from './coin'
-import { Plant } from './plants'
+import { Plant } from './plant'
 import { Inventory } from './inventory'
 import { Character } from './character'
+import { Item } from './item'
 
-export async function setUserData(character: Character) {
-  character.userData = await getUserData()
-}
-// initialize character
-const character = new Character()
-setUserData(character)
+// set serverUrl
+const serverUrl = 'https://63f1-82-118-30-27.ngrok.io';
 
 // initialize canvas
 const canvas = new UICanvas()
@@ -23,19 +19,21 @@ const canvas = new UICanvas()
 const inventory = new Inventory(canvas)
 inventory.hide()
 
-// initialize plant
+// initialize character
+const character = new Character()
+initializeCharacter(character, inventory)
+
+// initialize plants
 new Plant(
-  'pink_fern',
+  'mountain_ragweed',
   new Transform({ position: new Vector3(8, 0, 8) }),
-  inventory,
-  character
+  updateInventory
 )
 
 new Plant(
-  'pink_fern',
-  new Transform({ position: new Vector3(10, 0, 10) }),
-  inventory,
-  character
+  'void_tulip',
+  new Transform({ position: new Vector3(13, 0, 12) }),
+  updateInventory
 )
 
 // initialize input events
@@ -49,52 +47,55 @@ input.subscribe("BUTTON_DOWN", ActionButton.SECONDARY, false, (e) => {
   }
 })
 
-// Adding base scene models
-// const base = new Entity()
-// base.addComponent(new GLTFShape('models/baseLight.glb'))
-// engine.addEntity(base)
+// define functions
+async function getCharacterData() {
+  const charId = character.userData.publicKey;
+  const    url = serverUrl + '/character/' + charId
 
-// const canvas = new UICanvas()
-// const inventory = new UIContainerRect(canvas)
-// inventory.width = "70%"
-// inventory.height = "70%"
-// inventory.color = Color4.Black()
-// inventory.opacity = 0.95
+  try {
+    let request = await fetch(url, { method: 'GET' })
+    let response = await request.json()
 
-// // Contains the positions for each coin
-// const coinPositions = [
-//   new Vector3(2.2, 1.5, 2.2),
-//   new Vector3(5.2, 1.5, 2.2),
-//   new Vector3(8, 1.5, 2.2),
-//   new Vector3(10.8, 1.5, 2.2),
-//   new Vector3(13.8, 1.5, 2.2),
-//   new Vector3(13.8, 1.5, 5),
-//   new Vector3(13.8, 1.5, 8),
-//   new Vector3(10.8, 1.5, 8),
-//   new Vector3(8, 1.5, 8),
-//   new Vector3(5.2, 1.5, 8),
-//   new Vector3(2.2, 1.5, 8),
-//   new Vector3(2.2, 1.5, 10.9),
-//   new Vector3(2.2, 1.5, 13.8),
-//   new Vector3(5.2, 1.5, 13.8),
-//   new Vector3(8, 1.5, 13.8),
-//   new Vector3(10.8, 1.5, 13.8),
-//   new Vector3(13.8, 1.5, 13.8),
-// ]
-//
-// // add ui elements
-// let coinIcon  = new ui.SmallIcon('images/treasure.png', -75, 0)
-// let coinCount = new ui.UICounter(0, 10, -10, Color4.White(), 32, true)
-//
-// // Setup the coins
-// for (let coinPosition of coinPositions) {
-//   const coin = new Coin(
-//     new GLTFShape('models/coin.glb'),
-//     new Transform({ position: coinPosition }),
-//     new utils.TriggerBoxShape(
-//       new Vector3(0.2, 0.2, 0.2),
-//       new Vector3(0, 1, 0)
-//     ),
-//     coinCount
-//   )
-// }
+    log(response)
+    log("[success] character data pulled from server")
+    return response.character
+  } catch {
+    log("[error] character data not pulled from server")
+  }
+}
+
+async function initializeCharacter(character: Character, inventory: Inventory) {
+  // pull basic character information from DCL
+  const userData = await getUserData()
+  character.setuserData(userData);
+
+  // set character attributes from server
+  const characterData = await getCharacterData()
+  character.xp        = characterData.xp;
+
+  // set inventory items
+  inventory.refreshItems(characterData.inventory);
+}
+
+async function updateInventory(itemName: String) {
+  const charId = character.userData.publicKey;
+  const    url = serverUrl + '/character/' + charId + '/harvest/' + itemName;
+
+  try {
+    log('updating inventory')
+    let request       = await fetch(url, { method: 'POST'});
+    let response      = await request.json();
+    let characterData = response.character;
+
+    // update xp
+    character.xp = characterData.xp;
+
+    // set inventory items
+    inventory.refreshItems(characterData.inventory);
+
+    // return result
+    return response.result
+  } catch {
+    log('server error')
+  }
+}

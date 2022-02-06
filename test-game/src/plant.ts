@@ -1,6 +1,7 @@
 import { Inventory } from './inventory'
 import { Character } from './character'
 
+// sound setup
 // Sound is a separated from the plant entity so that you can
 // still hear it even when the plant is removed from the engine.
 
@@ -14,15 +15,13 @@ source.volume = 1
 engine.addEntity(collectPlantSound)
 collectPlantSound.setParent(Attachable.AVATAR)
 
-export let successRate = 0.3
-export let failedHarvestXpModifer = 0.3
+// class setup
 
 export class Plant extends Entity {
   constructor(
-    modelName: String,
+    modelName: string,
     transform: Transform,
-    inventory: Inventory,
-    character: Character
+    harvestCallback: (modelName: String) => void
   ) {
     super()
     engine.addEntity(this)
@@ -35,27 +34,17 @@ export class Plant extends Entity {
           this.getComponent(Transform).scale.setAll(0)
           engine.removeEntity(this)
 
-          const success = Math.random() > successRate ? true : false
-          const xp = 100;
-
-          if ( success ) {
-            log('successfully harvested '+ modelName)
-
-            // play sound
-            collectPlantSound.getComponent(AudioSource).playOnce()
-
-            // add to inventory
-            inventory.addItemOrCreate(1, modelName)
-
-            // grant experience
-            character.incrementExperience(xp)
-          } else {
-            log('failed to harvest '+ modelName)
-
-            character.incrementExperience(xp * failedHarvestXpModifer)
-          }
+          // perform callback to harvest plant
+          // server is responsible for everything once this is called
+          // including assigning items and granting xp
+          harvestCallback(modelName).then(function(response: String) {
+            if ( response == 'success' ) {
+              collectPlantSound.getComponent(AudioSource).playOnce()
+            }
+          });
         },
-        { button: ActionButton.PRIMARY }
+        // TODO: use display name rather than camelcase name
+        { button: ActionButton.PRIMARY, hoverText: 'Harvest '+ modelName }
       )
     )
   }

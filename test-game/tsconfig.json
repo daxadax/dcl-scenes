@@ -3,6 +3,7 @@
     "outFile": "./bin/game.js",
     "allowJs": true,
     "strict": true,
+    "noLib": true,
     "paths": {
       "@dcl/ui-scene-utils": [
         "node_modules/@dcl/ui-scene-utils/dist/index.d.ts"
