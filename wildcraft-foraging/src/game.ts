@@ -4,26 +4,34 @@ import * as ui from '@dcl/ui-scene-utils'
 import { getUserData } from "@decentraland/Identity"
 
 // local resources
-import { Plant } from './plant'
-import { Inventory } from './inventory'
 import { Character } from './character'
+import { InfoPanel } from './info_panel'
+import { Inventory } from './inventory'
 import { Item } from './item'
+import { Plant } from './plant'
 
 // set serverUrl
-const serverUrl = 'https://63f1-82-118-30-27.ngrok.io';
+const serverUrl = 'https://70a4-82-118-30-31.ngrok.io';
 
 // initialize canvas
 const canvas = new UICanvas()
 
-// initialize inventory
-const inventory = new Inventory(canvas)
-inventory.hide()
-
 // initialize character
 const character = new Character()
-initializeCharacter(character, inventory)
+
+// initialize infoPanel
+const infoPanel = new InfoPanel(canvas, character)
+infoPanel.hide()
+
+// initialize inventory
+const inventory = new Inventory(infoPanel.container)
+
+// pull character data from server
+retrieveCharacterFromServer(character, inventory)
 
 // initialize plants
+// TODO: spawn at random times / resource spawning in general:
+// https://github.com/search?q=org%3Adecentraland-scenes+item&type=all
 new Plant(
   'mountain_ragweed',
   new Transform({ position: new Vector3(8, 0, 8) }),
@@ -40,9 +48,10 @@ new Plant(
 const input = Input.instance
 
 input.subscribe("BUTTON_DOWN", ActionButton.SECONDARY, false, (e) => {
-  if ( inventory.isVisible() ) {
-    inventory.hide()
+  if ( infoPanel.isVisible() ) {
+    infoPanel.hide()
   } else {
+    infoPanel.show()
     inventory.show()
   }
 })
@@ -64,7 +73,7 @@ async function getCharacterData() {
   }
 }
 
-async function initializeCharacter(character: Character, inventory: Inventory) {
+async function retrieveCharacterFromServer(character: Character, inventory: Inventory) {
   // pull basic character information from DCL
   const userData = await getUserData()
   character.setuserData(userData);

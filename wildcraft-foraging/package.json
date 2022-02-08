@@ -1,7 +1,7 @@
 {
-  "name": "test-game",
+  "name": "wildcraft",
   "version": "1.0.0",
-  "description": "game test",
+  "description": "forage plants and craft potions",
   "scripts": {
     "start": "dcl start",
     "build": "build-ecs",
