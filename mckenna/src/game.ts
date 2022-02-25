@@ -2,6 +2,10 @@
 import { NPC } from '@dcl/npc-scene-utils'
 import { Dialog } from '@dcl/npc-scene-utils'
 import { soundClips } from 'src/tracklist'
+import { registerDclEvents } from 'lib/eventListeners'
+
+// collect statistics
+registerDclEvents()
 
 // set global vars
 let selectedClip = null
