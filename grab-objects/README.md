@@ -1,5 +1,5 @@
 # Grab Objects
-forked from github.com/decentraland-scenes/grab-objects
+forked from [github.com/decentraland-scenes/grab-objects](https://github.com/decentraland-scenes/grab-objects)
 
 ## Description
 Create a "placeable object" - in this case a cocktail glass - which can be picked up and placed on other objects, so long as that object has a collider. If the player picks up an object and attempts to place it on an object without a collider, the object is simply put on the ground in front of the player.
