@@ -2,10 +2,6 @@
 import { NPC } from '@dcl/npc-scene-utils'
 import { Dialog } from '@dcl/npc-scene-utils'
 import { soundClips } from 'src/tracklist'
-import { customEvents } from '../node_modules/@3stats/dcl-tracer/index'
-
-// collect statistics
-import "../node_modules/@3stats/dcl-tracer/registerDclEvents"
 
 // set global vars
 let selectedClip = null
@@ -103,9 +99,6 @@ function playSelectedClip() {
   const clip = soundClips[selectedClip]
   const audioClip = new AudioClip(clip.src)
   const audioSource = new AudioSource(audioClip)
-
-  // log playing of clip
-  customEvents({ eventType: clip.name, tags: ['playClip'] })
 
   // add default audio source
   speaker.addComponentOrReplace(audioSource)

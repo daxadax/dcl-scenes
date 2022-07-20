@@ -14,7 +14,6 @@
     "decentraland-ecs": "^6.11.3"
   },
   "dependencies": {
-    "@3stats/dcl-tracer": "^0.4.0",
     "@dcl/npc-scene-utils": "^1.4.0",
     "decentraland": "^3.8.3",
     "decentraland-builder-scripts": "latest"
