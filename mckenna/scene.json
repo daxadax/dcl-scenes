@@ -1,7 +1,8 @@
 {
   "display": {
     "title": "McKenna's Grotto",
-    "description": "Visit the bard McKenna in the Metaverse"
+    "description": "Visit the bard McKenna in the Metaverse",
+    "navmapThumbnail": "images/scene-thumbnail.png"
   },
   "owner": "",
   "contact": {
