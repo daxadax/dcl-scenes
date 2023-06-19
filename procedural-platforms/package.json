@@ -1,0 +1,25 @@
+{
+  "name": "test ad scene",
+  "version": "1.0.0",
+  "description": "test ad scene",
+  "scripts": {
+    "start": "dcl start",
+    "build": "build-ecs",
+    "watch": "build-ecs --watch",
+    "ecs:install": "npm install --save-dev decentraland-ecs@latest",
+    "ecs:install-next": "npm install --save-dev decentraland-ecs@next",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@dcl/eslint-config": "^1.0.1",
+    "decentraland-ecs": "latest"
+  },
+  "dependencies": {
+    "@adshares/decentraland": "^1.1.3",
+    "@dcl/ecs-scene-utils": "latest"
+  },
+  "bundleDependencies": [
+    "@dcl/ecs-scene-utils"
+  ]
+}
